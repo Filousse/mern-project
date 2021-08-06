@@ -18,9 +18,11 @@ module.exports.checkUser = (req, res, next) => {
     });
   } else {
     res.locals.user = null;
+    console.log(res.locals.user)
     next();
   }
 };
+
 
 module.exports.requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -30,7 +32,7 @@ module.exports.requireAuth = (req, res, next) => {
         console.log(err);
         res.send(200).json('no token')
       } else {
-        console.log(decodedToken.id);
+        console.log("decodedToken.id => ",decodedToken.id);
         next();
       }
     });
